@@ -5,24 +5,24 @@
 
 ## 0. Header
 - Guide version: 1.0
-- State last updated: 2026-10-09 by Antigravity (P0.1 complete, P0.2 active)
-- Repo status: initializing
+- State last updated: 2026-10-09 by Antigravity (P0.3 complete, Gate G0 next)
+- Repo status: in progress, spikes/ and docs/ added
 - Project folder: /home/mallhar/Desktop/f1-project
 
 ## 1. Handoff summary (15 lines max; rewrite at every checkpoint)
-- Project: PitWall, an F1 race-data backend (ingestion, Postgres, FastAPI, Redis, replay, baseline degradation model).
-- P0.1 Intake completed: 10 hrs/week available, Linux OS, moderate terminal comfort.
-- User has studied Python OOP fundamentals (classes through @property). Subsequent tech stacks (Git, SQL, Docker, FastAPI, Celery) will be learned via Pause Protocol as phases approach.
-- Active Task: P0.2 Repo and environment skeleton.
-- Next steps: Initialize git repo, create minimal P0 directory layout, .gitignore, .env.example, requirements/virtualenv, and initial commit.
+- Project: PitWall (F1 race-data backend).
+- P0.1, P0.2, and P0.3 are completed.
+- P0.3 Source Spike: Probed OpenF1 and Jolpica-F1 APIs in `spikes/probe_sources.py`. Documented full comparison in `docs/data-sources.md`.
+- OpenF1 verified as primary candidate: provides clean JSON arrays for sessions, laps (sectors + speed traps), stints (tyre compound + age), and pit stops.
+- Next Task: P0.4 Gate G0 (formally select OpenF1, decide telemetry out, choose first target race: Bahrain 2024).
 
 ## 2. Current focus
 - Phase: P0
-- Task Lock (single active task): P0.2 Repo and environment
+- Task Lock (single active task): P0.4 Gate G0
 - Status: in progress
 
 ## 3. Task tracker (`[ ]` todo, `[~]` in progress, `[x]` done, `[-]` cut with reason in Decisions)
-**P0** [x] P0.1 Intake · [~] P0.2 Repo and environment · [ ] P0.3 Source spike · [ ] P0.4 Gate G0 · [ ] P0.5 Glossary
+**P0** [x] P0.1 Intake · [x] P0.2 Repo and environment · [x] P0.3 Source spike · [~] P0.4 Gate G0 · [ ] P0.5 Glossary
 **P1** [ ] P1.1 Postgres via Compose · [ ] P1.2 Schema on paper · [ ] P1.3 Models and session · [ ] P1.4 Alembic · [ ] P1.5 Constraint tests · [ ] P1.6 Index experiment · [ ] Gate G1
 **P2** [ ] P2.1 Source adapter · [ ] P2.2 Validate and transform · [ ] P2.3 Idempotent loader · [ ] P2.4 CLI · [ ] P2.5 Failure drills
 **P3** [ ] P3.1 App skeleton · [ ] P3.2 Read endpoints · [ ] P3.3 Auth · [ ] P3.4 Integration tests · [ ] P3.5 CI skeleton · [ ] P3.6 Baseline load test
@@ -50,14 +50,18 @@ Format: `DR-001 | date | decision | why | alternatives considered | who decided 
 
 ## 6. Verified facts register
 Only facts verified in a session. Format: `fact | how verified | date`
-Include: pinned versions, data source field names and volumes, commands that actually worked, differences between the 2021 course and current library styles.
-(none yet)
+- Python 3.12.3 installed on host | `python3 --version` | 2026-10-09
+- pytest 9.1.1, ruff 0.16.10 installed in `.venv` | `.venv/bin/pytest`, `.venv/bin/ruff --version` | 2026-10-09
+- Smoke test passing on editable install | `pytest` run in `.venv` | 2026-10-09
+- OpenF1 API live and reachable without auth key | `spikes/probe_sources.py` | 2026-10-09
+- OpenF1 returns native stints with compound and tyre_age_at_start | `spikes/probe_sources.py` | 2026-10-09
+- Jolpica-F1 (Ergast successor) requires per-lap pagination for race laps | `spikes/probe_sources.py` | 2026-10-09
 
 ## 7. Learning queue
 Format: `topic | needed for | resource and portion | status (todo / in progress / ready-check passed)`
-- Python venv and pip | P0.2 | FCC API course 22:11 to 36:21 | in progress
+- Python venv and pip | P0.2 | FCC API course 22:11 to 36:21 | ready-check passed (environment created & verified)
 - Git and GitHub basics | P0.2 | FCC API course 11:23:38 to 11:34:39 | in progress
-- Reading tabular data (pandas minimum) | P0.3 | to be chosen at P0.3 | todo
+- Reading tabular data (pandas / requests / JSON inspection) | P0.3 | official docs & spikes | ready-check passed (probed & parsed live JSON)
 - SQL basics | P1 | FCC API course 2:24:11 to 4:08:00 and/or FCC Postgres course | todo
 - Docker basics | P1.1 | FCC API course 13:26:09 to 14:08:08 | todo
 - SQLAlchemy 2.x models | P1.3 | official docs; FCC 4:31:18 to 5:28:21 for concepts only | todo
@@ -70,10 +74,11 @@ Format: `date | what the user says they learned | status: claimed / verified / n
 
 ## 9. Metrics log
 Format: `date | what was measured | how (tool, data size, machine) | result`
-(none yet)
+- 2026-10-09 | OpenF1 endpoint latency (Bahrain 2024 session key 9472) | `httpx` probe in `spikes/probe_sources.py` | sessions: 0.697s, laps: 0.518s, stints: 0.500s, pits: 0.496s
+- 2026-10-09 | Jolpica-F1 latency (Bahrain 2024) | `httpx` probe in `spikes/probe_sources.py` | results: 0.852s, lap 1: 0.824s, pitstops: 0.932s
 
 ## 10. Risks and open questions
-- R-1: Data source access, terms or coverage may not match expectations (resolved at P0.3 and Gate G0).
+- R-1: Data source access, terms or coverage may not match expectations (resolved in P0.3: OpenF1 is viable & rich).
 - R-2: The main video course is from 2021; library styles may differ from current versions.
 - R-3: Agent rules-file loading in the IDE is unverified; the bootstrap prompt in the guide is the fallback.
 
@@ -82,4 +87,5 @@ Format: `date | what was measured | how (tool, data size, machine) | result`
 
 ## 12. Session log (append-only, newest at the bottom)
 - **Session 0, 2026-10-08 (planning chat, Claude):** scope and architecture decided; PROJECT_GUIDE.md and PROJECT_STATE.md created. No code written. Next: P0.1 Intake.
-- **Session 1, 2026-10-09 (Antigravity):** P0.1 Intake completed. User profile recorded (~10 hrs/week, Linux, moderate terminal, OOP studied). Task Lock set to P0.2 (Repo and environment).
+- **Session 1, 2026-10-09 (Antigravity):** P0.1 Intake completed. User profile recorded (~10 hrs/week, Linux, moderate terminal, OOP studied). P0.2 completed: Git repo initialized, `.gitignore`, `.env.example`, `pyproject.toml`, virtual environment `.venv`, and passing smoke tests. Task Lock set to P0.3 (Source spike).
+- **Session 1 (cont.), 2026-10-09 (Antigravity):** P0.3 Source Spike completed: probed OpenF1 & Jolpica live APIs, verified schema fields and latencies in `spikes/probe_sources.py`, created `docs/data-sources.md`. Task Lock advanced to P0.4 Gate G0.

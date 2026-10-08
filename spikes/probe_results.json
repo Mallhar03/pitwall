@@ -1,0 +1,249 @@
+{
+  "openf1": {
+    "session_sample": {
+      "session_key": 9472,
+      "session_type": "Race",
+      "session_name": "Race",
+      "date_start": "2024-03-02T15:00:00+00:00",
+      "date_end": "2024-03-02T17:00:00+00:00",
+      "meeting_key": 1229,
+      "circuit_key": 63,
+      "circuit_short_name": "Sakhir",
+      "country_key": 36,
+      "country_code": "BRN",
+      "country_name": "Bahrain",
+      "location": "Sakhir",
+      "gmt_offset": "03:00:00",
+      "year": 2024,
+      "is_cancelled": false
+    },
+    "lap_sample": {
+      "meeting_key": 1229,
+      "session_key": 9472,
+      "driver_number": 1,
+      "lap_number": 1,
+      "date_start": "2024-03-02T15:03:42.341000+00:00",
+      "duration_sector_1": 32.877,
+      "duration_sector_2": 41.266,
+      "duration_sector_3": 23.616,
+      "i1_speed": 234,
+      "i2_speed": 250,
+      "is_pit_out_lap": false,
+      "lap_duration": 97.759,
+      "segments_sector_1": [
+        null,
+        2048,
+        2049,
+        2049,
+        2051,
+        2051,
+        2049,
+        2049,
+        2051,
+        2049
+      ],
+      "segments_sector_2": [
+        2051,
+        2051,
+        2051,
+        2049,
+        2049,
+        2049,
+        2049,
+        2051,
+        2051,
+        2049,
+        2049
+      ],
+      "segments_sector_3": [
+        2051,
+        2051,
+        2049,
+        2049,
+        2051,
+        2049,
+        2051
+      ],
+      "st_speed": 251
+    },
+    "stint_sample": {
+      "meeting_key": 1229,
+      "session_key": 9472,
+      "stint_number": 1,
+      "driver_number": 1,
+      "lap_start": 1,
+      "lap_end": 17,
+      "compound": "SOFT",
+      "tyre_age_at_start": 3
+    },
+    "pit_sample": {
+      "date": "2024-03-02T15:06:11.115000+00:00",
+      "session_key": 9472,
+      "lap_number": 1,
+      "lane_duration": 36.6,
+      "stop_duration": null,
+      "pit_duration": 36.6,
+      "meeting_key": 1229,
+      "driver_number": 27
+    },
+    "headers": {}
+  },
+  "jolpica": {
+    "race_sample": {
+      "number": "1",
+      "position": "1",
+      "positionText": "1",
+      "points": "26",
+      "Driver": {
+        "driverId": "max_verstappen",
+        "permanentNumber": "3",
+        "code": "VER",
+        "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+        "givenName": "Max",
+        "familyName": "Verstappen",
+        "dateOfBirth": "1997-09-30",
+        "nationality": "Dutch"
+      },
+      "Constructor": {
+        "constructorId": "red_bull",
+        "url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+        "name": "Red Bull",
+        "nationality": "Austrian"
+      },
+      "grid": "1",
+      "laps": "57",
+      "status": "Finished",
+      "Time": {
+        "millis": "5504742",
+        "time": "1:31:44.742"
+      },
+      "FastestLap": {
+        "rank": "1",
+        "lap": "39",
+        "Time": {
+          "time": "1:32.608"
+        },
+        "AverageSpeed": {
+          "units": "kph",
+          "speed": "210.383"
+        }
+      }
+    },
+    "lap_sample": {
+      "number": "1",
+      "Timings": [
+        {
+          "driverId": "max_verstappen",
+          "time": "1:37.284",
+          "position": "1"
+        },
+        {
+          "driverId": "leclerc",
+          "time": "1:38.271",
+          "position": "2"
+        },
+        {
+          "driverId": "russell",
+          "time": "1:39.228",
+          "position": "3"
+        },
+        {
+          "driverId": "perez",
+          "time": "1:40.053",
+          "position": "4"
+        },
+        {
+          "driverId": "sainz",
+          "time": "1:40.620",
+          "position": "5"
+        },
+        {
+          "driverId": "alonso",
+          "time": "1:41.679",
+          "position": "6"
+        },
+        {
+          "driverId": "norris",
+          "time": "1:42.168",
+          "position": "7"
+        },
+        {
+          "driverId": "piastri",
+          "time": "1:42.523",
+          "position": "8"
+        },
+        {
+          "driverId": "hamilton",
+          "time": "1:43.122",
+          "position": "9"
+        },
+        {
+          "driverId": "tsunoda",
+          "time": "1:43.485",
+          "position": "10"
+        },
+        {
+          "driverId": "albon",
+          "time": "1:43.888",
+          "position": "11"
+        },
+        {
+          "driverId": "kevin_magnussen",
+          "time": "1:44.349",
+          "position": "12"
+        },
+        {
+          "driverId": "zhou",
+          "time": "1:44.801",
+          "position": "13"
+        },
+        {
+          "driverId": "ricciardo",
+          "time": "1:45.668",
+          "position": "14"
+        },
+        {
+          "driverId": "sargeant",
+          "time": "1:45.921",
+          "position": "15"
+        },
+        {
+          "driverId": "ocon",
+          "time": "1:46.657",
+          "position": "16"
+        },
+        {
+          "driverId": "gasly",
+          "time": "1:47.240",
+          "position": "17"
+        },
+        {
+          "driverId": "bottas",
+          "time": "1:48.536",
+          "position": "18"
+        },
+        {
+          "driverId": "stroll",
+          "time": "1:50.214",
+          "position": "19"
+        },
+        {
+          "driverId": "hulkenberg",
+          "time": "1:53.555",
+          "position": "20"
+        }
+      ]
+    },
+    "pit_sample": {
+      "driverId": "hulkenberg",
+      "lap": "1",
+      "stop": "1",
+      "time": "18:05:33",
+      "duration": "36.604"
+    },
+    "headers": {
+      "cache-control": "max-age=600",
+      "cf-cache-status": "MISS"
+    }
+  }
+}
