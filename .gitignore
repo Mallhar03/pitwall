@@ -1,0 +1,31 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Python cache & build
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+src/*.egg-info/
+build/
+dist/
+
+# Environment and secrets
+.env
+.env.local
+
+# Project Data (raw downloaded data, never committed per Rule B-15)
+data/
+
+# IDE & Editor
+.vscode/
+.idea/
+
+# OS metadata
+.DS_Store
+Thumbs.db
