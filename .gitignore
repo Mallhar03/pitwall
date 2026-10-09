@@ -22,6 +22,9 @@ dist/
 # Project Data (raw downloaded data, never committed per Rule B-15)
 data/
 
+# Project live state (local only)
+PROJECT_STATE.md
+
 # IDE & Editor
 .vscode/
 .idea/
