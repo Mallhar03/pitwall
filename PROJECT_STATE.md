@@ -5,24 +5,24 @@
 
 ## 0. Header
 - Guide version: 1.0
-- State last updated: 2026-10-09 by Antigravity (P0.3 complete, Gate G0 next)
-- Repo status: in progress, spikes/ and docs/ added
+- State last updated: 2026-10-09 by Antigravity (P0.4 Gate G0 complete, P0.5 Glossary next)
+- Repo status: in progress, spikes/ updated for OpenF1
 - Project folder: /home/mallhar/Desktop/f1-project
 
 ## 1. Handoff summary (15 lines max; rewrite at every checkpoint)
 - Project: PitWall (F1 race-data backend).
-- P0.1, P0.2, and P0.3 are completed.
-- P0.3 Source Spike: Probed OpenF1 and Jolpica-F1 APIs in `spikes/probe_sources.py`. Documented full comparison in `docs/data-sources.md`.
-- OpenF1 verified as primary candidate: provides clean JSON arrays for sessions, laps (sectors + speed traps), stints (tyre compound + age), and pit stops.
-- Next Task: P0.4 Gate G0 (formally select OpenF1, decide telemetry out, choose first target race: Bahrain 2024).
+- P0.1, P0.2, P0.3, and P0.4 Gate G0 completed.
+- DR-001 locked: OpenF1 formally selected as single primary data source. Telemetry excluded from v1 scope. Target race: 2024 Bahrain GP (session key 9472). Local raw JSON caching enabled.
+- Probe code in `spikes/probe_sources.py` cleaned to focus strictly on OpenF1.
+- Next Task: P0.5 Glossary (`docs/glossary.md`).
 
 ## 2. Current focus
 - Phase: P0
-- Task Lock (single active task): P0.4 Gate G0
+- Task Lock (single active task): P0.5 Glossary
 - Status: in progress
 
 ## 3. Task tracker (`[ ]` todo, `[~]` in progress, `[x]` done, `[-]` cut with reason in Decisions)
-**P0** [x] P0.1 Intake · [x] P0.2 Repo and environment · [x] P0.3 Source spike · [~] P0.4 Gate G0 · [ ] P0.5 Glossary
+**P0** [x] P0.1 Intake · [x] P0.2 Repo and environment · [x] P0.3 Source spike · [x] P0.4 Gate G0 · [~] P0.5 Glossary
 **P1** [ ] P1.1 Postgres via Compose · [ ] P1.2 Schema on paper · [ ] P1.3 Models and session · [ ] P1.4 Alembic · [ ] P1.5 Constraint tests · [ ] P1.6 Index experiment · [ ] Gate G1
 **P2** [ ] P2.1 Source adapter · [ ] P2.2 Validate and transform · [ ] P2.3 Idempotent loader · [ ] P2.4 CLI · [ ] P2.5 Failure drills
 **P3** [ ] P3.1 App skeleton · [ ] P3.2 Read endpoints · [ ] P3.3 Auth · [ ] P3.4 Integration tests · [ ] P3.5 CI skeleton · [ ] P3.6 Baseline load test
@@ -46,7 +46,7 @@
 ## 5. Decisions log
 Baseline decisions B-1 to B-16 in the guide apply unless superseded here.
 Format: `DR-001 | date | decision | why | alternatives considered | who decided | supersedes`
-(none yet)
+DR-001 | 2026-10-09 | Selected OpenF1 as single primary source; telemetry excluded from v1; target race: 2024 Bahrain GP; raw response caching enabled | OpenF1 has clean flat JSON, native stint compounds/tyre age, low latency (~0.5s); telemetry volume is ~500k+ rows/race | Jolpica-F1, FastF1 | User & Antigravity | -
 
 ## 6. Verified facts register
 Only facts verified in a session. Format: `fact | how verified | date`
@@ -71,6 +71,7 @@ Format: `topic | needed for | resource and portion | status (todo / in progress 
 ## 8. User-reported learning
 Format: `date | what the user says they learned | status: claimed / verified / needs work`
 - 2026-10-09 | Python OOP fundamentals (classes, objects, self, composition, access modifiers, getters/setters, @property) | status: claimed
+- 2026-10-09 | Python OOP advanced (static attributes/methods, protected/private methods, encapsulation, abstraction, inheritance, polymorphism) | status: claimed
 
 ## 9. Metrics log
 Format: `date | what was measured | how (tool, data size, machine) | result`
@@ -89,3 +90,4 @@ Format: `date | what was measured | how (tool, data size, machine) | result`
 - **Session 0, 2026-10-08 (planning chat, Claude):** scope and architecture decided; PROJECT_GUIDE.md and PROJECT_STATE.md created. No code written. Next: P0.1 Intake.
 - **Session 1, 2026-10-09 (Antigravity):** P0.1 Intake completed. User profile recorded (~10 hrs/week, Linux, moderate terminal, OOP studied). P0.2 completed: Git repo initialized, `.gitignore`, `.env.example`, `pyproject.toml`, virtual environment `.venv`, and passing smoke tests. Task Lock set to P0.3 (Source spike).
 - **Session 1 (cont.), 2026-10-09 (Antigravity):** P0.3 Source Spike completed: probed OpenF1 & Jolpica live APIs, verified schema fields and latencies in `spikes/probe_sources.py`, created `docs/data-sources.md`. Task Lock advanced to P0.4 Gate G0.
+- **Session 2, 2026-10-09 (Antigravity):** P0.4 Gate G0 completed: locked DR-001 (selected OpenF1 as primary source, excluded telemetry, selected Bahrain 2024 GP, approved raw response caching). In-depth review of OOP concepts (classes, encapsulation, abstraction, properties, static methods, httpx vs requests). Cleaned `spikes/probe_sources.py` to focus exclusively on OpenF1. Advanced Task Lock to P0.5 (Glossary).

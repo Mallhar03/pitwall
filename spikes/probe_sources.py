@@ -1,4 +1,4 @@
-"""Spike script to evaluate candidate F1 data sources (OpenF1 and Jolpica-F1).
+"""Spike script to evaluate primary F1 data source (OpenF1).
 
 Runs live probes to discover endpoints, fields, response latency, and rate limit behaviors.
 """
@@ -82,48 +82,11 @@ def probe_openf1() -> dict[str, Any]:
     return results
 
 
-def probe_jolpica() -> dict[str, Any]:
-    print("\n--- Probing Jolpica-F1 (https://api.jolpi.ca/ergast/f1) ---")
-    probe = APIProbe("Jolpica-F1", "https://api.jolpi.ca/ergast/f1")
-    results = {}
-
-    # 1. Probe Race Results (2024 Round 1 Bahrain)
-    status, elapsed, data, headers = probe.fetch("/2024/1/results.json")
-    print(f"Race Results Endpoint: HTTP {status} in {elapsed:.3f}s")
-    if isinstance(data, dict):
-        race_data = data.get("MRData", {}).get("RaceTable", {}).get("Races", [])
-        if race_data:
-            results["race_sample"] = race_data[0].get("Results", [])[0]
-            print(f"  Winner: {results['race_sample'].get('Driver', {}).get('familyName')}")
-
-    # 2. Probe Laps
-    status, elapsed, data, headers = probe.fetch("/2024/1/laps/1.json")
-    print(f"Lap 1 Timing Endpoint: HTTP {status} in {elapsed:.3f}s")
-    if isinstance(data, dict):
-        laps = data.get("MRData", {}).get("RaceTable", {}).get("Races", [])
-        if laps:
-            results["lap_sample"] = laps[0].get("Laps", [])[0]
-            print(f"  Lap sample drivers: {len(results['lap_sample'].get('Timings', []))}")
-
-    # 3. Probe Pit Stops
-    status, elapsed, data, headers = probe.fetch("/2024/1/pitstops.json")
-    print(f"Pit Stops Endpoint: HTTP {status} in {elapsed:.3f}s")
-    if isinstance(data, dict):
-        pitstops = data.get("MRData", {}).get("RaceTable", {}).get("Races", [])
-        if pitstops:
-            pits = pitstops[0].get("PitStops", [])
-            results["pit_sample"] = pits[0] if pits else {}
-            print(f"  Total pit stops recorded: {len(pits)}")
-
-    results["headers"] = {k: v for k, v in headers.items() if "ratelimit" in k.lower() or "cache" in k.lower()}
-    return results
-
-
 if __name__ == "__main__":
     openf1_data = probe_openf1()
-    jolpica_data = probe_jolpica()
 
     output_path = "spikes/probe_results.json"
     with open(output_path, "w") as f:
-        json.dump({"openf1": openf1_data, "jolpica": jolpica_data}, f, indent=2)
+        json.dump({"openf1": openf1_data}, f, indent=2)
     print(f"\nSaved raw probe summary to {output_path}")
+
