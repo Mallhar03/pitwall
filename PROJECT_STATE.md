@@ -5,24 +5,25 @@
 
 ## 0. Header
 - Guide version: 1.0
-- State last updated: 2026-10-09 by Antigravity (P0.4 Gate G0 complete, P0.5 Glossary next)
-- Repo status: in progress, spikes/ updated for OpenF1
+- State last updated: 2026-10-09 by Antigravity (P0.5 Glossary complete, Phase P0 finished, P1.1 Postgres next)
+- Repo status: in progress, GitHub remote Mallhar03/pitwall linked & synced
 - Project folder: /home/mallhar/Desktop/f1-project
 
 ## 1. Handoff summary (15 lines max; rewrite at every checkpoint)
 - Project: PitWall (F1 race-data backend).
-- P0.1, P0.2, P0.3, and P0.4 Gate G0 completed.
-- DR-001 locked: OpenF1 formally selected as single primary data source. Telemetry excluded from v1 scope. Target race: 2024 Bahrain GP (session key 9472). Local raw JSON caching enabled.
-- Probe code in `spikes/probe_sources.py` cleaned to focus strictly on OpenF1.
-- Next Task: P0.5 Glossary (`docs/glossary.md`).
+- Phase P0 completely finished (P0.1 through P0.5).
+- GitHub repository created (`Mallhar03/pitwall`) and synced with local `main`.
+- Data source: OpenF1 (Bahrain 2024 GP, session 9472).
+- Domain glossary compiled in `docs/glossary.md`.
+- Next Phase: Phase P1 (Database foundation). Next Task: P1.1 Postgres via Compose.
 
 ## 2. Current focus
-- Phase: P0
-- Task Lock (single active task): P0.5 Glossary
-- Status: in progress
+- Phase: P1
+- Task Lock (single active task): P1.1 Postgres via Compose
+- Status: todo
 
 ## 3. Task tracker (`[ ]` todo, `[~]` in progress, `[x]` done, `[-]` cut with reason in Decisions)
-**P0** [x] P0.1 Intake · [x] P0.2 Repo and environment · [x] P0.3 Source spike · [x] P0.4 Gate G0 · [~] P0.5 Glossary
+**P0** [x] P0.1 Intake · [x] P0.2 Repo and environment · [x] P0.3 Source spike · [x] P0.4 Gate G0 · [x] P0.5 Glossary
 **P1** [ ] P1.1 Postgres via Compose · [ ] P1.2 Schema on paper · [ ] P1.3 Models and session · [ ] P1.4 Alembic · [ ] P1.5 Constraint tests · [ ] P1.6 Index experiment · [ ] Gate G1
 **P2** [ ] P2.1 Source adapter · [ ] P2.2 Validate and transform · [ ] P2.3 Idempotent loader · [ ] P2.4 CLI · [ ] P2.5 Failure drills
 **P3** [ ] P3.1 App skeleton · [ ] P3.2 Read endpoints · [ ] P3.3 Auth · [ ] P3.4 Integration tests · [ ] P3.5 CI skeleton · [ ] P3.6 Baseline load test
@@ -56,11 +57,12 @@ Only facts verified in a session. Format: `fact | how verified | date`
 - OpenF1 API live and reachable without auth key | `spikes/probe_sources.py` | 2026-10-09
 - OpenF1 returns native stints with compound and tyre_age_at_start | `spikes/probe_sources.py` | 2026-10-09
 - Jolpica-F1 (Ergast successor) requires per-lap pagination for race laps | `spikes/probe_sources.py` | 2026-10-09
+- GitHub repository Mallhar03/pitwall created and synced | `gh repo create` & `git push` | 2026-10-09
 
 ## 7. Learning queue
 Format: `topic | needed for | resource and portion | status (todo / in progress / ready-check passed)`
 - Python venv and pip | P0.2 | FCC API course 22:11 to 36:21 | ready-check passed (environment created & verified)
-- Git and GitHub basics | P0.2 | FCC API course 11:23:38 to 11:34:39 | in progress
+- Git and GitHub basics | P0.2 | FCC API course 11:23:38 to 11:34:39 | ready-check passed (remote origin created & pushed)
 - Reading tabular data (pandas / requests / JSON inspection) | P0.3 | official docs & spikes | ready-check passed (probed & parsed live JSON)
 - SQL basics | P1 | FCC API course 2:24:11 to 4:08:00 and/or FCC Postgres course | todo
 - Docker basics | P1.1 | FCC API course 13:26:09 to 14:08:08 | todo
@@ -91,3 +93,4 @@ Format: `date | what was measured | how (tool, data size, machine) | result`
 - **Session 1, 2026-10-09 (Antigravity):** P0.1 Intake completed. User profile recorded (~10 hrs/week, Linux, moderate terminal, OOP studied). P0.2 completed: Git repo initialized, `.gitignore`, `.env.example`, `pyproject.toml`, virtual environment `.venv`, and passing smoke tests. Task Lock set to P0.3 (Source spike).
 - **Session 1 (cont.), 2026-10-09 (Antigravity):** P0.3 Source Spike completed: probed OpenF1 & Jolpica live APIs, verified schema fields and latencies in `spikes/probe_sources.py`, created `docs/data-sources.md`. Task Lock advanced to P0.4 Gate G0.
 - **Session 2, 2026-10-09 (Antigravity):** P0.4 Gate G0 completed: locked DR-001 (selected OpenF1 as primary source, excluded telemetry, selected Bahrain 2024 GP, approved raw response caching). In-depth review of OOP concepts (classes, encapsulation, abstraction, properties, static methods, httpx vs requests). Cleaned `spikes/probe_sources.py` to focus exclusively on OpenF1. Advanced Task Lock to P0.5 (Glossary).
+- **Session 3, 2026-10-09 (Antigravity):** Created public GitHub repository `Mallhar03/pitwall` and pushed all commits. Completed Task P0.5 Glossary (`docs/glossary.md`). Fixed minor ruff lint issues in `spikes/probe_sources.py`. Phase P0 is 100% complete! Set Task Lock for next phase to P1.1 (Postgres via Compose).

@@ -6,6 +6,7 @@ Runs live probes to discover endpoints, fields, response latency, and rate limit
 import json
 import time
 from typing import Any
+
 import httpx
 
 
@@ -32,12 +33,12 @@ class APIProbe:
         with httpx.Client(timeout=self._timeout) as client:
             response = client.get(url, params=params)
         elapsed = time.perf_counter() - start
-        
+
         try:
             data = response.json()
-        except Exception:
+        except (json.JSONDecodeError, ValueError):
             data = response.text
-            
+
         return response.status_code, elapsed, data, dict(response.headers)
 
 
